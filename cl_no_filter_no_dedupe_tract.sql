@@ -1,10 +1,19 @@
-SELECT f.trt_id, f.met_id, 
-       COUNT(*) AS cl_listing_count, 
+SELECT COUNT(*) AS cl_listing_count, 
        COUNT(CASE WHEN f.clean_beds = 0 THEN 1 END) AS cl_listing_count_0b, 
        COUNT(CASE WHEN f.clean_beds = 1 THEN 1 END) AS cl_listing_count_1b, 
        COUNT(CASE WHEN f.clean_beds = 2 THEN 1 END) AS cl_listing_count_2b, 
        COUNT(CASE WHEN f.clean_beds = 3 THEN 1 END) AS cl_listing_count_3b, 
        COUNT(CASE WHEN f.clean_beds >= 4 THEN 1 END) AS cl_listing_count_4bplus, 
+	   
+	   AVG(f.clean_rent) AS cl_avg_rent, 
+       AVG(CASE WHEN f.clean_beds = 0 THEN f.clean_rent END) AS cl_avg_rent_0b,
+       AVG(CASE WHEN f.clean_beds = 1 THEN f.clean_rent END) AS cl_avg_rent_1b,
+       AVG(CASE WHEN f.clean_beds = 2 THEN f.clean_rent END) AS cl_avg_rent_2b,
+       AVG(CASE WHEN f.clean_beds = 3 THEN f.clean_rent END) AS cl_avg_rent_3b,
+       AVG(CASE WHEN f.clean_beds >= 4 THEN f.clean_rent END) AS cl_avg_rent_4bplus,
+	   
+       AVG(f.clean_beds) AS cl_avg_beds,
+       AVG(f.clean_sqft) AS cl_avg_sqft,
       
        QUANTILE(f.clean_rent, .05) AS cl_q5_rent, 
        QUANTILE(CASE WHEN f.clean_beds = 0 THEN f.clean_rent END, .05) AS cl_q5_rent_0b,

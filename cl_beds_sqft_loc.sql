@@ -1,5 +1,4 @@
-SELECT trt_id, met_id,
-       COUNT(*) AS cl_listing_count, 
+SELECT COUNT(*) AS cl_listing_count, 
        COUNT(CASE WHEN f.clean_beds = 0 THEN 1 END) AS cl_listing_count_0b, 
        COUNT(CASE WHEN f.clean_beds = 1 THEN 1 END) AS cl_listing_count_1b, 
        COUNT(CASE WHEN f.clean_beds = 2 THEN 1 END) AS cl_listing_count_2b, 

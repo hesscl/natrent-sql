@@ -60,8 +60,8 @@ FROM (
                    ROUND(CAST(ST_Y(ST_TRANSFORM(d.geometry, 4326)) as numeric), 3) as lat
             FROM (
                   SELECT a.gisjoin AS trt_id, a.geometry, b.cbsafp AS met_id
-                  FROM tract17 a
-                  JOIN county17 b ON a.statefp = b.statefp AND a.countyfp = b.countyfp
+                  FROM tract18 a
+                  JOIN county18 b ON a.statefp = b.statefp AND a.countyfp = b.countyfp
                   WHERE b.cbsafp IS NOT NULL AND
 						b.cbsafp IN ('35300','25540','49340','35620','39300','14860','47900','14460','27140','16740',
 						'17460','10420','12060','18140','33460','28140','41180','36420','16980','31540','19780','19740','17820',

@@ -13,8 +13,8 @@ FROM (
                    ROUND(CAST(ST_Y(ST_TRANSFORM(d.geometry, 4326)) as numeric), 3) as lat
             FROM (
                   SELECT a.gisjoin AS trt_id, a.geometry, b.cbsafp AS met_id
-                  FROM tract17 a
-                  JOIN county17 b ON a.statefp = b.statefp AND a.countyfp = b.countyfp
+                  FROM tract18 a
+                  JOIN county18 b ON a.statefp = b.statefp AND a.countyfp = b.countyfp
                   WHERE b.cbsafp IS NOT NULL
             ) c
             LEFT JOIN clean d ON ST_Contains(c.geometry, d.geometry) 
